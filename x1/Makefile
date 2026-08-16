@@ -46,6 +46,11 @@ injector/uboot.bin:
 	@./extract.py -p injector/disable_mmu.elf injector/disable_mmu.bin
 	@./extract.py -p injector/disable_mmu.elf injector/disable_mmu.bin
 	@./injector/inject.py 0xed0000 0x700000 injector/disable_mmu.bin u-boot.bin injector/uboot.bin
+
+event_dumper/AppMain.bin: event_dumper/main.c
+	@$(CC) -nostdlib -static -fPIC -marm -march=armv7-a+fp -O0 event_dumper/main.c -o event_dumper/AppMain.elf -T event_dumper/linker.ld
+	@./extract.py -p event_dumper/AppMain.elf  event_dumper/AppMain.bin
+
 samplefb/AppMain.bin:
 	@$(CC) -nostdlib -static -fPIC -marm -march=armv7-a+fp -O0 samplefb/main.c -o samplefb/AppMain.elf -T samplefb/linker.ld
 	@./extract.py -p samplefb/AppMain.elf  samplefb/AppMain.bin

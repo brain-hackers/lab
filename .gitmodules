@@ -1,0 +1,3 @@
+[submodule "x1/event_dumper/lvgl"]
+	path = x1/event_dumper/lvgl
+	url = https://github.com/lvgl/lvgl
